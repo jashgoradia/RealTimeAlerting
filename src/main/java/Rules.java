@@ -1,15 +1,22 @@
 public class Rules {
+
+    /*
+    * Resource consumption alerting rule set
+    * */
     public String rule_set(Integer resource_status[]){
         String violation = "";
         int cpu = resource_status[0];
         int memory = resource_status[1];
         int disk = resource_status[2];
         violation = violation + ((cpu>85)?"1":"0");
-        violation = violation + ((memory>85)?"1":"0");
-        violation = violation + ((disk>85)?"1":"0");
+        violation = violation + ((memory>75)?"1":"0");
+        violation = violation + ((disk>60)?"1":"0");
         return violation;
     }
 
+    /*
+    * Alert message generation
+    * */
     public String get_message(String violation, int server_id){
         String msg = "";
         if(violation.equals("000")){
