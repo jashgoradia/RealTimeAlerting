@@ -30,11 +30,13 @@ public class StatusInput {
         int open_bracket = status.indexOf('(');
         if(open_bracket==-1){
             throw new InputValidationException("Invalid Input Syntax - Brackets Missing");
+//            System.err.println("Invalid Input Syntax - Brackets Missing");
         }
         try {
             status = status.substring(open_bracket + 1, status.indexOf(')'));
         }catch (Exception e){
             throw new InputValidationException("Invalid Status Syntax - Brackets missing");
+//            System.err.println("Invalid Input Syntax - Brackets Missing");
         }
 
         //Only numeric input is permitted
@@ -42,17 +44,20 @@ public class StatusInput {
              input_vals = Arrays.stream(status.split(",")).map(String::trim).map(Integer::valueOf).toArray(Integer[]::new);
         }catch(Exception e){
             throw new InputValidationException("Invalid Input In Status - Non Numeric Input");
+//            System.err.println("Invalid Input In Status - Non Numeric Input");
         }
 
         //Input must contain exactly 4 attributes - (SERVER_ID, CPU_UTILIZATION, MEMORY UTILIZATION, DISK_UTILISATION)
         if(input_vals.length!=4) {
             throw new InputValidationException("Invalid Status Length - Status Message Does Not Have Exactly 4 Attributes");
+//            System.err.println("Invalid Status Length - Status Message Does Not Have Exactly 4 Attributes");
         }
 
         //Resource usage stats must not be greater than 100%
         for(int i = 1; i<input_vals.length; i++){
             if (input_vals[i]>100){
                 throw new InputValidationException("Invalid Resource Usage - Resource Usage > 100");
+//                System.err.println("Invalid Resource Usage - Resource Usage > 100");
             }
         }
     }

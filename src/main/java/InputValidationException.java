@@ -1,5 +1,4 @@
 public class InputValidationException extends Exception{
-
     /*
     * Custom Input Validation Exception
     * */
@@ -7,3 +6,6 @@ public class InputValidationException extends Exception{
         super(message);
     }
 }
+
+
+
